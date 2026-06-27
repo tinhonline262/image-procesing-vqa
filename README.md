@@ -1,4 +1,4 @@
-# VQA Medical Imaging System
+# CV-VQA-MEDICAL
 
 This project is a FastAPI-based backend for a Visual Question Answering (VQA) system. It combines a Vision Transformer (ViT) and PubMedBERT to answer questions about medical images.
 
@@ -17,8 +17,8 @@ The project is structured modularly, separating machine learning logic from the 
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository_url>
-    cd <repository_name>
+    git clone https://github.com/NguyenAn3001/CV-VQA-MEDICAL.git
+    cd CV-VQA-MEDICAL
     ```
 
 2.  **Create and activate a virtual environment:**
