@@ -33,7 +33,14 @@ The project is structured modularly, separating machine learning logic from the 
     pip install "numpy<2" # Required for ONNX compatibility
     ```
 
-4.  **Download Model Weights:**
+4.  **Configure Environment Variables:**
+    Copy the example environment file and rename it to `.env`:
+    ```bash
+    cp .env.example .env
+    ```
+    *(Optional)* Edit the `.env` file to customize settings like the device (CPU/CUDA) or model paths.
+
+5.  **Download Model Weights:**
     Place the required model weights (e.g., `best_vit_pubmedbert_slake.pth`) into the `models/` directory.
 
 ## Running the Application
