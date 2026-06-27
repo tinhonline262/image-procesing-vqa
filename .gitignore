@@ -43,3 +43,5 @@ logs/
 
 # Opencode agents
 .agents/
+skills-lock.json
+AGENTS.md
