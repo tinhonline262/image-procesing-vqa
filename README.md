@@ -68,6 +68,25 @@ To start the FastAPI server, use `uvicorn`:
 
 The API documentation (Swagger UI) will be available at `http://localhost:8000/docs`.
 
+## Testing
+
+This project uses `pytest` for unit and integration testing. Tests are designed to verify the VQA pipeline against specific medical image questions.
+
+To run the test suite:
+
+```bash
+source venv/bin/activate
+pytest tests/ -v
+```
+
+To run tests and generate a coverage report:
+
+```bash
+source venv/bin/activate
+coverage run -m pytest
+coverage report -m
+```
+
 ## Endpoints
 
 -   `GET /health`: Health check endpoint.
