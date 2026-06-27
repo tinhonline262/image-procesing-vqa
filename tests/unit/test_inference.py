@@ -1,0 +1,52 @@
+import pytest
+from PIL import Image
+import io
+
+from app.ml.inference import vqa_pipeline
+
+def test_vqa_pipeline_singleton():
+    """Test that VQAPipeline is a singleton."""
+    pipeline1 = vqa_pipeline
+    from app.ml.inference import VQAPipeline
+    pipeline2 = VQAPipeline()
+    assert pipeline1 is pipeline2
+
+def test_mocked_inference_english(mock_vqa_pipeline, test_image_path):
+    """Test the mocked inference logic for English questions."""
+    img = Image.open(test_image_path)
+    
+    # Test Modality
+    res = mock_vqa_pipeline.predict(img, "What modality is used to take this image?")
+    assert res["answer"] == "MRI"
+    
+    # Test Body Part
+    res = mock_vqa_pipeline.predict(img, "Which part of the body does this image belong to?")
+    assert res["answer"] == "Abdomen"
+    
+    # Test Count
+    res = mock_vqa_pipeline.predict(img, "How many kidneys in this image?")
+    assert res["answer"] == "2"
+    
+    # Test Yes/No
+    res = mock_vqa_pipeline.predict(img, "Does the picture contain spleen?")
+    assert res["answer"] == "No"
+
+def test_mocked_inference_chinese(mock_vqa_pipeline, test_image_path):
+    """Test the mocked inference logic for Chinese questions."""
+    img = Image.open(test_image_path)
+    
+    # Test Modality
+    res = mock_vqa_pipeline.predict(img, "这张图片的成像方式是什么?")
+    assert res["answer"] == "MRI"
+    
+    # Test Body Part
+    res = mock_vqa_pipeline.predict(img, "图像里包含的区域属于身体哪个部分?")
+    assert res["answer"] == "腹部"
+    
+    # Test Count
+    res = mock_vqa_pipeline.predict(img, "图片里存在几个肾脏?")
+    assert res["answer"] == "2"
+    
+    # Test Yes/No
+    res = mock_vqa_pipeline.predict(img, "图片中包含脾脏吗?")
+    assert res["answer"] == "不包含"
